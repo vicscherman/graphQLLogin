@@ -11,6 +11,15 @@ class SignupForm extends Component {
     this.state = { errors: [] };
   }
 
+  componentWillUpdate(nextProps){
+    // this.props //current set of props
+    // nextProps //the set of props that are in place on rerender
+     if(!this.props.data.currentuser && nextProps.data.currentuser){
+       this.props.history.push('/dashboard')
+     }
+ 
+   }
+
   onSubmit({ email, password }) {
     this.props
       .mutate({
@@ -36,4 +45,4 @@ class SignupForm extends Component {
   }
 }
 
-export default graphql(SignupMutation)(SignupForm);
+export default graphql(CurrentUser)(graphql(SignupMutation)(SignupForm))

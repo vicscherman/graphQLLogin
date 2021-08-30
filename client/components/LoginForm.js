@@ -11,6 +11,15 @@ class LoginForm extends Component {
 
     this.state = { errors: [] };
   }
+//remember this old thing? Basically class based useEffect
+  componentWillUpdate(nextProps){
+   // this.props //current set of props
+   // nextProps //the set of props that are in place on rerender
+    if(!this.props.data.currentuser && nextProps.data.currentuser){
+      this.props.history.push('/dashboard')
+    }
+
+  }
 
   onSubmit({ email, password }) {
     this.props
@@ -37,4 +46,4 @@ class LoginForm extends Component {
   }
 }
 
-export default graphql(LoginMutation)(LoginForm);
+export default graphql(CurrentUser)(graphql(LoginMutation)(LoginForm));

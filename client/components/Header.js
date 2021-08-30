@@ -9,10 +9,10 @@ import Logout from '../mutations/Logout';
 class Header extends Component {
   onLogoutClick() {
     this.props.mutate({
-      refetchQueries:[{query:CurrentUser}]
-    })
+      refetchQueries: [{ query: CurrentUser }],
+    });
   }
-  
+
   renderButtons() {
     const { loading, currentuser } = this.props.data;
 
